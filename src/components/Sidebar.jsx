@@ -39,7 +39,6 @@ const Sidebar = () => {
           <button className='px-4 py-1.5 bg-white text-black rounded-full mt-4 shadow-md hover:scale-105'>Browse podcasts</button>
 
         </div>
-
       </div>
     </div>
   )

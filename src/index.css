@@ -6,3 +6,7 @@
     background-image: radial-gradient(circle, #000000 90%, #242424 100%);
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+

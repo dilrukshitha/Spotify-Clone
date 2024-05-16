@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useContext } from "react";
 import Navbar from "./Navbar";
 import { useParams } from "react-router-dom";
 import { albumsData, assets, songsData } from "../assets/assets";
+import { PlayerContext } from "../context/PlayerContext";
 
 export default function DisplayAlbum() {
   const { id } = useParams();
   const albumData = albumsData[id];
+  const { playWithId } = useContext(PlayerContext);
 
   return (
     <>
@@ -39,12 +42,17 @@ export default function DisplayAlbum() {
         </p>
         <p className="col-span-2">Album</p>
         <p className=" hidden sm:block col-span-2">Date Added</p>
-        <img src={assets.clock_icon} className=" w-4 col-span-1 block m-auto" alt="" />
+        <img
+          src={assets.clock_icon}
+          className=" w-4 col-span-1 block m-auto"
+          alt=""
+        />
       </div>
       <hr />
-      
+
       {songsData.map((item, index) => (
         <div
+          onClick={() => playWithId(item.id)}
           key={index}
           className="grid grid-cols-5 sm:grid-cols-7 justify-items-start gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer"
         >

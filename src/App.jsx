@@ -6,7 +6,7 @@ import { PlayerContext } from './context/PlayerContext'
 
 const App = () => {
 
-  const {audioRef,track,next,autoJumpToNextSong} = useContext(PlayerContext);
+  const {audioRef,track,autoJumpToNextSong} = useContext(PlayerContext);
 
   return (
     <div className=' h-screen bg-black'>

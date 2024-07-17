@@ -16,7 +16,7 @@ export default function Player() {
     seekSong,
   } = useContext(PlayerContext);
 
-  return (
+  return track ? (
     <div className=" h-[10%] bg-black flex justify-between items-center text-white px-4">
       <div className=" hidden lg:flex items-center gap-4">
         <img src={track.image} className=" w-12" alt="" />
@@ -93,5 +93,6 @@ export default function Player() {
         <img src={assets.zoom_icon} className=" w-4" alt="" />
       </div>
     </div>
-  );
+  )
+  : null;
 }

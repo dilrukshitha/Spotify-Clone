@@ -2,15 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import Navbar from "./Navbar";
 import { useParams } from "react-router-dom";
-import { albumsData, assets, songsData } from "../assets/assets";
+import { assets } from "../assets/assets";
 import { PlayerContext } from "../context/PlayerContext";
 
-export default function DisplayAlbum() {
+export default function DisplayAlbum({album}) {
   const { id } = useParams();
-  const albumData = albumsData[id];
-  const { playWithId } = useContext(PlayerContext);
+  const [albumData,setAlbumData] = useState("");
+  const { playWithId, albumsData, songsData } = useContext(PlayerContext);
 
-  return (
+  useEffect(()=>{
+    albumsData.map((item)=>{
+      if(item._id === id){
+        setAlbumData(item);
+      }
+    })
+  },[])
+
+  return albumData ?  (
     <>
       <Navbar />
       <div className=" mt-10 flex gap-8 flex-col items-start md:flex-row md:items-end">
@@ -50,9 +58,9 @@ export default function DisplayAlbum() {
       </div>
       <hr />
 
-      {songsData.map((item, index) => (
+      {songsData.filter(item=>item.album === album.name).map((item, index) => (
         <div
-          onClick={() => playWithId(item.id)}
+          onClick={() => playWithId(item._id)}
           key={index}
           className="grid grid-cols-5 sm:grid-cols-7 justify-items-start gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer"
         >
@@ -67,5 +75,6 @@ export default function DisplayAlbum() {
         </div>
       ))}
     </>
-  );
+  )
+  : null;
 }

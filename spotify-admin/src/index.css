@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add this to your global CSS file (e.g., index.css) */
+.toast-container {
+  @apply fixed top-5 right-5 z-50;
+}
+
+.toast {
+  @apply bg-white text-black border-l-4 border-green-500 p-4 rounded-md shadow-lg;
+}
